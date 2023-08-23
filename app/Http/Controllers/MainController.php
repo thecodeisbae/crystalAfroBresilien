@@ -536,6 +536,7 @@ class MainController extends Controller
 
             \DB::commit();
             echo 'Enregistrement effectué';
+            echo 'Enregistrement effectué';
         }
         catch(\Throwable $e)
         {
