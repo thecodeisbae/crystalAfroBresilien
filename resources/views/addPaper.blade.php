@@ -39,8 +39,8 @@
                 @csrf
                 <!-- Step 1 -->
                 <h6>Etape 1</h6>
-                <section>
-                <fieldset class="b-radius">
+                <section class="">
+                <fieldset class="b-radius bg-light-success">
                   <legend>Opération et acteurs</legend><hr>
                   <div class="row p-2">
                     <div class="col-md-6">
@@ -58,7 +58,7 @@
                   </div>
                 </fieldset>
 
-                <fieldset class="b-radius mt-3">
+                <fieldset class="b-radius mt-3 bg-light-success ">
                     <legend>Identification de l'objet</legend><hr>
                     <div class="row p-2">
                         <div class="col-md-6">
@@ -91,7 +91,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset class="b-radius mt-3 mb-3">
+                <fieldset class="b-radius mt-3 mb-3 bg-light-success">
                     <legend>Localisation de l'objet</legend><hr>
                     <div class="row p-2">
                         <div class="col-md-6">
@@ -157,7 +157,7 @@
                 <h6>Etape 2</h6>
                 <section>
 
-                <fieldset class="b-radius mt-3">
+                <fieldset class="b-radius mt-3 bg-dark text-light">
                     <legend>Droit et propriété</legend><hr>
                     <div class="row p-2">
                         <div class="col-md-6 ">
@@ -263,7 +263,7 @@
                             </div>
                         </div>
                         </div>
-                        <h6 class="pt-4 pb-3">Identification propriétaire / référent</h6>
+                        <h6 class="pt-4 pb-3 text-light">Identification propriétaire / référent</h6>
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jobTitle1">Nom/prenoms :</label>
@@ -300,7 +300,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset class="b-radius mt-3 mb-3">
+                <fieldset class="b-radius mt-3 mb-3 bg-dark text-light">
                     <legend>Qualification patrimoniale</legend><hr>
                     <div class="row p-2">
                       <div class="col-md-4">
@@ -377,7 +377,7 @@
                 <h6>Etape 3</h6>
                 <section>
                   <div class="row mb-3">
-                    <fieldset class="b-radius mt-3 mb-3 col-md-6">
+                    <fieldset class="b-radius mt-3 mb-3 col-md-6 bg-danger text-light">
                         <legend>Conservation</legend><hr>
                         <div class="p-2">
                             <div class="col-md-12 mb-4">
@@ -536,7 +536,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="b-radius mt-3 mb-3 col-md-6">
+                    <fieldset class="b-radius mt-3 mb-3 col-md-6 bg-danger text-light">
                         <legend>Protection</legend><hr>
                         <div class="p-2">
                             <div class="col-md-12 mb-4">
@@ -700,7 +700,7 @@
                 <!-- Step 4 -->
                 <h6>Etape 4</h6>
                 <section>
-                    <fieldset class="b-radius mt-3">
+                    <fieldset class="b-radius mt-3 bg-success text-light">
                         <legend>Syntheses historique et architecturale</legend><hr>
                         <div class="row p-2">
                             <div class="col-md-6">
@@ -742,7 +742,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="b-radius mt-3 mb-3">
+                    <fieldset class="b-radius mt-3 mb-3 bg-success text-light">
                         <legend>Photos</legend><hr>
                         <div class="row p-2">
                             <div class="col-md-6">

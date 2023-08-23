@@ -22,7 +22,12 @@
             padding: 1rem;
             border-radius: 0.5rem;
        }
+
+       .h2{
+        font-size:1.2rem;
+       }
   </style>
+  <link rel="stylesheet" href="dist/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -85,7 +90,7 @@
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="#" class="sidebar-link">
+                  <a href="/fiches" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>
@@ -413,6 +418,8 @@
 <script src="dist/libs/jquery-steps/build/jquery.steps.min.js"></script>
 <script src="dist/libs/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_fr.js"></script>
+<script src="dist/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="dist/js/datatable/datatable-basic.init.js"></script>
 
 <script src="dist/js/forms/form-wizard.js"></script>
 <script>

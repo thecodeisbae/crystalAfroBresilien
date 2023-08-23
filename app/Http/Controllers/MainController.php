@@ -46,6 +46,134 @@ class MainController extends Controller
         echo json_encode($arrondissements);
     }
 
+    function displayAll()
+    {
+        $fiches = \DB::select('select * from identification where Modisuppr = ?', [0]);
+        return view('displayAll',compact('fiches'));
+    }
+
+    function getFichesAjax()
+    {
+        $query = 'SELECT * FROM identification ident ';
+
+        $query .= ' INNER JOIN localisation loc ON loc.Codelocal  = ident.Codelocal
+                    INNER JOIN arrondissement arr ON arr.Codearrondis = loc.Codearrondis
+                    INNER JOIN commune com ON com.Codecommune  = arr.Codecommune
+                    INNER JOIN departement dep ON dep.Codecommune  = arr.Codecommune
+                    INNER JOIN propriete prop ON ident.Codepropri = prop.Codepropri
+                    INNER JOIN qualification qual ON ident.Codequalif  = qual.Codequalif
+                    INNER JOIN conservation cons ON cons.Codeconserv  = ident.Codeconserv
+                    INNER JOIN protection prot ON prot.Codeprotec   = ident.Codeprotec
+                    LEFT JOIN coordonnees coor ON coor.Codelocal = loc.Codelocal
+            ';
+
+        $whereRequest = '';
+
+        if(request('departement'))
+        {
+            $whereRequest .= ' AND dep.Codedepartement = "'.request('departement').'"';
+        }
+
+        if(request('commune'))
+        {
+            $whereRequest .= ' AND com.Codecommune  = "'.request('commune').'"';
+        }
+
+        if(request('arrondissement'))
+        {
+            $whereRequest .= ' AND arr.Codearrondis   = "'.request('arrondissement').'"';
+        }
+
+        if(request('quartier'))
+        {
+            $whereRequest .= ' AND loc.Localite  LIKE "%'.request('quartier').'%"';
+        }
+
+        if(request('longitude'))
+        {
+            $whereRequest .= ' AND coor.longitude  = '.request('longitude');
+        }
+
+        if(request('latitude'))
+        {
+            $whereRequest .= ' AND coor.latitude  = '.request('latitude');
+        }
+
+        if(request('proppub'))
+        {
+            $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';
+            $whereRequest .= ' AND proppub.'.request('proppub').' = 1';
+        }
+
+        if(request('proppriv'))
+        {
+            $query .= ' LEFT JOIN proprietepriv proppriv ON proppriv.Codepropri = prop.Codepropri ';
+            $whereRequest .= ' AND proppriv.'.request('proppriv').' = 1';
+        }
+
+        if(request('bientype'))
+        {
+
+            switch (request('bientype')) {
+                case 'Bien immeuble':
+                    $query .= ' LEFT JOIN bienimmeuble bienimm ON bienimm.Codequalif  = qual.Codequalif  ';
+                    $whereRequest .= ' AND bienimm.'.request('bienimmeuble').' = 1';
+                    break;
+
+                case 'Biens meubles associés':
+                    $query .= ' LEFT JOIN bienmeuble bienmeu ON bienmeu.Codequalif  = qual.Codequalif  ';
+                    $whereRequest .= ' AND bienmeu.Cochebienmeuble = 1';
+                    break;
+
+                case 'Biens immatériels associés':
+                    $query .= ' LEFT JOIN bienimmateriel bienima ON bienima.Codequalif  = qual.Codequalif  ';
+                    $whereRequest .= ' AND bienima.Cochebienimmat = 1';
+                    break;
+            }
+
+        }
+
+        if(request('etatgene'))
+        {
+            $query .= ' LEFT JOIN etatgeneral etatgene ON etatgene.Codeconserv  = cons.Codeconserv  ';
+            $whereRequest .= ' AND etatgene.'.request('etatgene').' = 1';
+        }
+
+        if(request('modif'))
+        {
+            $query .= ' LEFT JOIN etatmodification etatmodif ON etatmodif.Codeconserv  = cons.Codeconserv  ';
+            $whereRequest .= ' AND etatmodif.'.request('modif').' = 1';
+        }
+
+        if(request('occup'))
+        {
+            $query .= ' LEFT JOIN etatoccupation etatoccup ON etatoccup.Codeconserv  = cons.Codeconserv  ';
+            $whereRequest .= ' AND etatoccup.'.request('occup').' = 1';
+        }
+
+        if(request('protact'))
+        {
+            $query .= ' LEFT JOIN protectionactuelle protact ON protact.Codeprotec  = prot.Codeprotec  ';
+            $whereRequest .= ' AND protact.'.request('protact').' = 1';
+        }
+
+        if(request('protsug'))
+        {
+            $query .= ' LEFT JOIN echelleprotectsuggeree echprotsug ON echprotsug.Codeprotec  = prot.Codeprotec  ';
+            $whereRequest .= ' AND echprotsug.'.request('protsug').' = 1';
+        }
+
+        if(request('classesug'))
+        {
+            $query .= ' LEFT JOIN echelleclasssugeree echclassesug ON echclassesug.Codeprotec  = prot.Codeprotec  ';
+            $whereRequest .= ' AND echclassesug.'.request('classesug').' = 1';
+        }
+
+        $results = \DB::select($query.' WHERE 1 '.$whereRequest,[]);
+        echo json_encode($results);
+
+    }
+
     function savePaper()
     {
         // dd(request());
@@ -407,6 +535,7 @@ class MainController extends Controller
              }
 
             \DB::commit();
+            echo 'Enregistrement effectué';
         }
         catch(\Throwable $e)
         {
