@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/fiches', [MainController::class,'displayAll']);
 Route::post('/savePaper', [MainController::class,'savePaper']);
 Route::get('/getArrondissementAjax', [MainController::class,'getArrondissement']);
 Route::get('/getCommuneAjax', [MainController::class,'getCommune']);

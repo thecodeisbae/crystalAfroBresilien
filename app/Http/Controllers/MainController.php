@@ -46,6 +46,11 @@ class MainController extends Controller
         echo json_encode($arrondissements);
     }
 
+    function displayAll()
+    {
+        return view('displayAll');
+    }
+
     function savePaper()
     {
         // dd(request());
@@ -407,6 +412,7 @@ class MainController extends Controller
              }
 
             \DB::commit();
+            echo 'Enregistrement effectué';
         }
         catch(\Throwable $e)
         {
