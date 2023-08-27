@@ -13,9 +13,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="shortcut icon" type="image/png" href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-  <link rel="stylesheet" href="dist/libs/prismjs/themes/prism-okaidia.min.css">
-  <link id="themeColors" rel="stylesheet" href="dist/css/style.min.css" />
-  <link id="themeColors" rel="stylesheet" href="dist/libs/sweetalert2/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="{{asset('dist/libs/prismjs/themes/prism-okaidia.min.css')}}">
+  <link id="themeColors" rel="stylesheet" href="{{asset('dist/css/style.min.css')}}" />
+  <link id="themeColors" rel="stylesheet" href="{{asset('dist/libs/sweetalert2/dist/sweetalert2.min.css')}}" />
   <style>
        .b-radius{
             border: 1px solid gainsboro;
@@ -27,7 +27,7 @@
         font-size:1.2rem;
        }
   </style>
-  <link rel="stylesheet" href="dist/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="{{asset('dist/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="index.html" class="text-nowrap logo-img">
+          <a href="#" class="text-nowrap logo-img">
             <img
               src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
               class="dark-logo" width="180" alt="" />
@@ -105,7 +105,7 @@
         <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
           <div class="hstack gap-3">
             <div class="john-img">
-              <img src="dist/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="">
+              <img src="{{asset('dist/images/profile/user-1.jpg')}}" class="rounded-circle" width="40" height="40" alt="">
             </div>
             <div class="john-title">
               <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
@@ -156,7 +156,7 @@
                   <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-flex align-items-center">
                       <div class="user-profile-img">
-                        <img src="dist/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="" />
+                        <img src="{{asset('dist/images/profile/user-1.jpg')}}" class="rounded-circle" width="35" height="35" alt="" />
                       </div>
                     </div>
                   </a>
@@ -166,7 +166,7 @@
                         <h5 class="mb-0 fs-5 fw-semibold">Profil</h5>
                       </div>
                       <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                        <img src="dist/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="" />
+                        <img src="{{asset('dist/images/profile/user-1.jpg')}}" class="rounded-circle" width="80" height="80" alt="" />
                         <div class="ms-3">
                           <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                           <span class="mb-1 d-block text-dark">Designer</span>
@@ -399,29 +399,29 @@
 <!-- ---------------------------------------------- -->
 <!-- Import Js Files -->
 <!-- ---------------------------------------------- -->
-<script src="dist/libs/jquery/dist/jquery.min.js"></script>
-<script src="dist/libs/simplebar/dist/simplebar.min.js"></script>
-<script src="dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('dist/libs/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('dist/libs/simplebar/dist/simplebar.min.js')}}"></script>
+<script src="{{asset('dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ---------------------------------------------- -->
 <!-- core files -->
 <!-- ---------------------------------------------- -->
-<script src="dist/js/app.min.js"></script>
-<script src="dist/js/app.init.js"></script>
-<script src="dist/js/app-style-switcher.js"></script>
-<script src="dist/js/sidebarmenu.js"></script>
-<script src="dist/js/custom.js"></script>
-<script src="dist/libs/prismjs/prism.js"></script>
-<script src="dist/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="{{asset('dist/js/app.min.js')}}"></script>
+<script src="{{asset('dist/js/app.init.js')}}"></script>
+<script src="{{asset('dist/js/app-style-switcher.js')}}"></script>
+<script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
+<script src="{{asset('dist/js/custom.js')}}"></script>
+<script src="{{asset('dist/libs/prismjs/prism.js')}}"></script>
+<script src="{{asset('dist/libs/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 <!-- ---------------------------------------------- -->
 <!-- current page js files -->
 <!-- ---------------------------------------------- -->
-<script src="dist/libs/jquery-steps/build/jquery.steps.min.js"></script>
-<script src="dist/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="{{asset('dist/libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
+<script src="{{asset('dist/libs/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_fr.js"></script>
-<script src="dist/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="dist/js/datatable/datatable-basic.init.js"></script>
+<script src="{{asset('dist/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('dist/js/datatable/datatable-basic.init.js')}}"></script>
 
-<script src="dist/js/forms/form-wizard.js"></script>
+<script src="{{asset('dist/js/forms/form-wizard.js')}}"></script>
 <script>
     $(function (){
       var objToday = new Date(),

@@ -651,9 +651,9 @@
                                                 <td class="sorting_1">{{ $key+1 }}</td>
                                                 <td>{{$fiche->Codeident}}</td>
                                                 <td align="center">
-                                                    <a href="#" class="text-primary"><i class="fa fa-eye"></i></a>
-                                                    <a href="#" class="text-success"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" class="text-danger"><i class="fa fa-trash"></i></a>
+                                                    <a href="/showFiche/{{$fiche->Codeident}}" class="text-primary"><i class="me-2 fa fa-eye"></i></a>
+                                                    <a href="/editFiche/{{$fiche->Codeident}}" class="text-success"><i class="me-2 fa fa-edit"></i></a>
+                                                    <a href="/deleteFiche/{{$fiche->Codeident}}" onclick="return confirm('Supprimer cette fiche ?');" class="text-danger"><i class="me-2 fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -820,9 +820,9 @@
                                     '<td class="sorting_1">'+(index+1)+'</td>'+
                                     '<td>'+element.Codeident+'</td>'+
                                     '<td align="center">'+
-                                        '<a href="#" class="text-primary"><i class="fa fa-eye"></i></a>'+
-                                        '<a href="#" class="text-success"><i class="fa fa-edit"></i></a>'+
-                                        '<a href="#" class="text-danger"><i class="fa fa-trash"></i></a>'+
+                                        '<a href="/showFiche/'+element.Codeident+'"class="text-primary"><i class=" me-2 fa fa-eye"></i></a>'+
+                                        '<a href="/editFiche/'+element.Codeident+'" class="text-success"><i class="me-2 fa fa-edit"></i></a>'+
+                                        '<a href="/deleteFiche/'+element.Codeident+'" onclick="return confirm(\'Supprimer cette fiche ?\');" class="text-danger"><i class="me-2 fa fa-trash"></i></a>'+
                                     '</td>'+
                                 '</tr>'
                     });

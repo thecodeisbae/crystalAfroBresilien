@@ -8,7 +8,7 @@
       <div class="card-body px-4 py-3">
         <div class="row align-items-center">
           <div class="col-9">
-            <h4 class="fw-semibold mb-8">Fiche de création</h4>
+            <h4 class="fw-semibold mb-8">Modifier une fiche de création</h4>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -20,7 +20,7 @@
           </div>
           <div class="col-3">
             <div class="text-center mb-n5">
-              <img src="dist/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+              <img src="{{asset('dist/images/breadcrumb/ChatBc.png')}}" alt="" class="img-fluid mb-n4">
             </div>
           </div>
         </div>
@@ -35,8 +35,9 @@
             <div class="card-body wizard-content">
               <h4 class="card-title mb-0">Formulaire</h4>
               <h6 class="card-subtitle mb-3"></h6>
-              <form action="/savePaper" method="POST" enctype="multipart/form-data" class="validation-wizard wizard-circle mt-5 wizard clearfix" novalidate="novalidate">
+              <form action="/updatePaper" method="POST" enctype="multipart/form-data" class="validation-wizard wizard-circle mt-5 wizard clearfix" novalidate="novalidate">
                 @csrf
+                <input type="text" hidden value="{{$result->Codeident}}" name="codeident">
                 <!-- Step 1 -->
                 <h6>Etape 1</h6>
                 <section class="">
@@ -46,13 +47,13 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="firstName1">Opération :</label>
-                        <input type="text" required class="form-control" id="operation" name="operation" />
+                        <input type="text" value="Crystal Afro-brésilien"  required class="form-control" id="operation" name="operation" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="lastName1">Acteurs :</label>
-                        <input type="text" required class="form-control" id="acteur" name="acteur" />
+                        <input type="text" value="Acteur"  required class="form-control" id="acteur" name="acteur" />
                       </div>
                     </div>
                   </div>
@@ -64,13 +65,13 @@
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="emailAddress1">Nature de l'objet :</label>
-                            <input type="text" required class="form-control" id="nature" name="nature" />
+                            <input type="text" value="{{$result->Nature}}"  required class="form-control" id="nature" name="nature" />
                         </div>
                         </div>
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="phoneNumber1">Dénomination officielle :</label>
-                            <input type="text" required class="form-control" id="denominationOff" name="denominationOff" />
+                            <input type="text" value="{{$result->Denominationof}}"  required class="form-control" id="denominationOff" name="denominationOff" />
                         </div>
                         </div>
                     </div>
@@ -79,13 +80,13 @@
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="emailAddress1">Dénomination populaire :</label>
-                            <input type="text" required class="form-control" id="denominationPop" name="denominationPop" />
+                            <input type="text" value="{{$result->Denominationpop}}"  required class="form-control" id="denominationPop" name="denominationPop" />
                         </div>
                         </div>
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="phoneNumber1">Autres dénomination :</label>
-                            <input type="text" class="form-control" id="autresDenomination" name="autresDenomination" />
+                            <input type="text" value="{{$result->Autredenomination}}" class="form-control" id="autresDenomination" name="autresDenomination" />
                         </div>
                         </div>
                     </div>
@@ -123,7 +124,7 @@
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jobTitle1">Quartier/Village :</label>
-                            <input required type="text" class="form-control" id="quartier" name="quartier" />
+                            <input value="{{$result->Localite}}"  required type="text" class="form-control" id="quartier" name="quartier" />
                         </div>
                         </div>
                     </div>
@@ -131,7 +132,7 @@
                         <div class="col-md-12">
                         <div class="mb-3">
                             <label for="location1">Adresse complète (n° rue) indications complémentaires :</label>
-                            <input required type="text" class="form-control" id="adresse" name="adresse" />
+                            <input value="{{$result->Adresse}}"  required type="text" class="form-control" id="adresse" name="adresse" />
                         </div>
                         </div>
                     </div>
@@ -140,14 +141,14 @@
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="location1">Latitude :</label>
-                            <input  type="number" class="form-control" id="latitude" name="latitude" />
+                            <input  value="{{$result->Latitude}}"  type="number" class="form-control" id="latitude" name="latitude" />
                         </div>
                         </div>
 
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="location1">Longitude :</label>
-                            <input  type="number" class="form-control" id="longitude" name="longitude" />
+                            <input  value="{{$result->Longitude}}"  type="number" class="form-control" id="longitude" name="longitude" />
                         </div>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppub" id="" value="Gouvernementale"
+                                <input  {{$result->proppubGouvernementale ? 'checked' : '' }} type="checkbox" name="proppub" id="" value="Gouvernementale"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Gouvernement</span>
                                 <span class="custom-control-description"></span>
@@ -174,7 +175,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppub" id="" value="Communautaire"
+                                <input  {{$result->proppubCommunautaire ? 'checked' : '' }} type="checkbox" name="proppub" id="" value="Communautaire"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Communautaire</span>
                                 <span class="custom-control-description"></span>
@@ -184,7 +185,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppub" id="" value="Departementale"
+                                <input  {{$result->proppubDepartementale ? 'checked' : '' }} type="checkbox" name="proppub" id="" value="Departementale"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Departement</span>
                                 <span class="custom-control-description"></span>
@@ -192,7 +193,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppub" id="" value="Autrepub"
+                                <input  {{$result->proppubAutrepub ? 'checked' : '' }} type="checkbox" name="proppub" id="" value="Autrepub"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Autres</span>
                                 <span class="custom-control-description"></span>
@@ -202,7 +203,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppub" id="" value="Municipale"
+                                <input  {{$result->proppubMunicipale ? 'checked' : '' }} type="checkbox" name="proppub" id="" value="Municipale"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Municipale</span>
                                 <span class="custom-control-description"></span>
@@ -218,7 +219,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Familiale"
+                                <input  {{$result->propprivFamiliale ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Familiale"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Familiale</span>
                                 <span class="custom-control-description"></span>
@@ -226,7 +227,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Individuel"
+                                <input  {{$result->propprivIndividuelle ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Individuel"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Individuel</span>
                                 <span class="custom-control-description"></span>
@@ -236,7 +237,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Associative"
+                                <input  {{$result->propprivAssociative ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Associative"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Associative</span>
                                 <span class="custom-control-description"></span>
@@ -244,7 +245,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Communautaire"
+                                <input  {{$result->propprivCommunautaire ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Communautaire"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Communautaire</span>
                                 <span class="custom-control-description"></span>
@@ -254,7 +255,7 @@
                             <div class="row p-2">
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Autrepriv"
+                                <input  {{$result->propprivAutrepriv ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Autrepriv"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Autres</span>
                                 <span class="custom-control-description"></span>
@@ -267,34 +268,34 @@
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jobTitle1">Nom/prenoms :</label>
-                            <input required type="text" class="form-control text-light" id="nomPrenom" name="nomPrenom" />
+                            <input  required type="text" value="{{$result->Nompren}}" class="form-control text-light" id="nomPrenom" name="nomPrenom" />
                         </div>
                         </div>
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="videoUrl1">Lien avec l'objet :</label>
-                            <input required type="text" class="form-control text-light" id="lien" name="lien" />
+                            <input  required type="text" value="{{$result->Lienobj}}" class="form-control text-light" id="lien" name="lien" />
                         </div>
                         </div>
 
                         <div class="col-md-12">
                         <div class="mb-3">
                             <label for="videoUrl1">Résidence :</label>
-                            <input required type="text" class="form-control text-light" id="residence" name="residence" />
+                            <input  required type="text" value="{{$result->propResidence}}" class="form-control text-light" id="residence" name="residence" />
                         </div>
                         </div>
 
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="videoUrl1">Contact 1 :</label>
-                            <input required type="text" class="form-control text-light" id="contact1" name="contact1" />
+                            <input  required type="text" value="{{$result->Contact1}}" class="form-control text-light" id="contact1" name="contact1" />
                         </div>
                         </div>
 
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label for="videoUrl1">Contact 2 :</label>
-                            <input type="text" class="form-control text-light" id="contact2" name="contact2" />
+                            <input type="text" class="form-control text-light" value="{{$result->Contact2}}" id="contact2 " name="contact2" />
                         </div>
                         </div>
                     </div>
@@ -305,7 +306,7 @@
                     <div class="row p-2">
                       <div class="col-md-4">
                         <label class="custom-control custom-checkbox">
-                            <input type="checkbox" name="bientype" id="" value="Bien immeuble"
+                            <input  {{$result->Codebienimmeuble ? 'checked' : '' }} type="checkbox" name="bientype" id="" value="Bien immeuble"
                               class="custom-control-input">
                             <span class="custom-control-indicator">Bien immeuble :</span>
                         </label>
@@ -313,7 +314,7 @@
 
                           <div class="col-md-12">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" name="bienimmeuble" id="" value="Monument"
+                              <input  {{$result->Monument ? 'checked' : '' }} type="checkbox" name="bienimmeuble" id="" value="Monument"
                                 class="custom-control-input">
                               <span class="custom-control-indicator">Monument</span>
                               <span class="custom-control-description"></span>
@@ -321,7 +322,7 @@
                           </div>
                           <div class="col-md-12">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" name="bienimmeuble" id="" value="Ensemble"
+                              <input  {{$result->Ensemble ? 'checked' : '' }} type="checkbox" name="bienimmeuble" id="" value="Ensemble"
                                 class="custom-control-input">
                               <span class="custom-control-indicator">Ensemble</span>
                               <span class="custom-control-description"></span>
@@ -329,7 +330,7 @@
                           </div>
                           <div class="col-md-12">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" name="bienimmeuble" id="" value="Site"
+                              <input  {{$result->Site ? 'checked' : '' }} type="checkbox" name="bienimmeuble" id="" value="Site"
                                 class="custom-control-input">
                               <span class="custom-control-indicator">Site</span>
                               <span class="custom-control-description"></span>
@@ -340,7 +341,7 @@
 
                       <div class="col-md-4">
                         <label class="custom-control custom-checkbox">
-                            <input type="checkbox" name="bientype" id="" value="Biens meubles associés"
+                            <input  {{$result->Cochebienmeuble ? 'checked' : '' }} type="checkbox" name="bientype" id="" value="Biens meubles associés"
                               class="custom-control-input">
                             <span class="custom-control-indicator">Biens meubles associés :</span>
                         </label>
@@ -348,7 +349,7 @@
                           <div class="col-md-12">
 
                             <label for="location1">Description :</label>
-                            <input type="text" class="form-control text-light" id="jobTitle1" name="bienmeubleassocieDescription" />
+                            <input  type="text" value="{{$result->Descriptionbienmeuble}}" class="form-control text-light" id="jobTitle1" name="bienmeubleassocieDescription" />
 
                           </div>
                         </div>
@@ -356,7 +357,7 @@
 
                       <div class="col-md-4">
                         <label class="custom-control custom-checkbox">
-                            <input type="checkbox" name="bientype" id="" value="Biens immatériels associés"
+                            <input  {{$result->Cochebienimmat ? 'checked' : '' }} type="checkbox" name="bientype" id="" value="Biens immatériels associés"
                               class="custom-control-input">
                             <span class="custom-control-indicator">Biens immatériels associés :</span>
                         </label>
@@ -364,7 +365,7 @@
                           <div class="col-md-12">
 
                             <label for="location1">Description :</label>
-                            <input type="text" class="form-control text-light" id="jobTitle1"  name="bienimmaterielassocieDescription"/>
+                            <input  type="text" value="{{$result->Descriptionbienimmat}}" class="form-control text-light" id="jobTitle1"  name="bienimmaterielassocieDescription"/>
 
                           </div>
                         </div>
@@ -386,7 +387,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="etatgene" id="" value="Bonetat"
+                                        <input  {{$result->Bonetat ? 'checked' : '' }} type="checkbox" name="etatgene" id="" value="Bonetat"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Bon état</span>
                                         <span class="custom-control-description"></span>
@@ -394,7 +395,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="etatgene" id="" value="Ruine"
+                                        <input  {{$result->Ruine ? 'checked' : '' }} type="checkbox" name="etatgene" id="" value="Ruine"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Ruine</span>
                                         <span class="custom-control-description"></span>
@@ -404,7 +405,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="etatgene" id="" value="Degradationavance"
+                                        <input  {{$result->Degradationavance ? 'checked' : '' }} type="checkbox" name="etatgene" id="" value="Degradationavance"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Dégradation avancée</span>
                                         <span class="custom-control-description"></span>
@@ -412,7 +413,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="etatgene" id="" value="Degradationentame"
+                                        <input  {{$result->Degradationentame ? 'checked' : '' }} type="checkbox" name="etatgene" id="" value="Degradationentame"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Dégradation entamée</span>
                                         <span class="custom-control-description"></span>
@@ -422,7 +423,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="etatgene" id="" value="Demoli"
+                                        <input  {{$result->Demoli ? 'checked' : '' }} type="checkbox" name="etatgene" id="" value="Demoli"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Démoli</span>
                                         <span class="custom-control-description"></span>
@@ -437,7 +438,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="modif" id="" value="Nonmodifie"
+                                        <input  {{$result->Nonmodifie ? 'checked' : '' }} type="checkbox" name="modif" id="" value="Nonmodifie"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Non modifié</span>
                                         <span class="custom-control-description"></span>
@@ -445,7 +446,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="modif" id="" value="Modificationlegere"
+                                        <input  {{$result->Modificationlegere ? 'checked' : '' }} type="checkbox" name="modif" id="" value="Modificationlegere"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Modification légère</span>
                                         <span class="custom-control-description"></span>
@@ -455,7 +456,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="modif" id="" value="Modificationprof"
+                                        <input  {{$result->Modificationprof ? 'checked' : '' }} type="checkbox" name="modif" id="" value="Modificationprof"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Modification profonde</span>
                                         <span class="custom-control-description"></span>
@@ -463,7 +464,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="modif" id="" value="Modificationreussie"
+                                        <input  {{$result->Modificationreussie ? 'checked' : '' }} type="checkbox" name="modif" id="" value="Modificationreussie"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Modification réussie</span>
                                         <span class="custom-control-description"></span>
@@ -473,7 +474,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="modif" id="" value="Modificationdegra"
+                                        <input  {{$result->Modificationdegra ? 'checked' : '' }} type="checkbox" name="modif" id="" value="Modificationdegra"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Modification dégradante</span>
                                         <span class="custom-control-description"></span>
@@ -489,7 +490,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Residence"
+                                        <input  {{$result->Residence ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Residence"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Résidence</span>
                                         <span class="custom-control-description"></span>
@@ -497,7 +498,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Commerce"
+                                        <input  {{$result->Commerce ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Commerce"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Commerce</span>
                                         <span class="custom-control-description"></span>
@@ -507,7 +508,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Bureau"
+                                        <input  {{$result->Bureau ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Bureau"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Bureau</span>
                                         <span class="custom-control-description"></span>
@@ -515,7 +516,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Abandonne"
+                                        <input  {{$result->Abandonoccup ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Abandonne"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Abandonné</span>
                                         <span class="custom-control-description"></span>
@@ -525,7 +526,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Squatte"
+                                        <input  {{$result->Squatte ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Squatte"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Squatté</span>
                                         <span class="custom-control-description"></span>
@@ -545,7 +546,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protact" id="" value="Gouvernementale"
+                                        <input  {{$result->protactGouvernementale ? 'checked' : '' }} type="checkbox" name="protact" id="" value="Gouvernementale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Gouvernementale</span>
                                         <span class="custom-control-description"></span>
@@ -553,7 +554,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protact" id="" value="Ministerielle"
+                                        <input  {{$result->protactMinisterielle ? 'checked' : '' }} type="checkbox" name="protact" id="" value="Ministerielle"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Ministérielle</span>
                                         <span class="custom-control-description"></span>
@@ -563,7 +564,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protact" id="" value="Prefectorale"
+                                        <input  {{$result->protactPrefectorale ? 'checked' : '' }} type="checkbox" name="protact" id="" value="Prefectorale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Préfectorale</span>
                                         <span class="custom-control-description"></span>
@@ -571,7 +572,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protact" id="" value="Municipale"
+                                        <input  {{$result->protactMunicipale ? 'checked' : '' }} type="checkbox" name="protact" id="" value="Municipale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Municipale</span>
                                         <span class="custom-control-description"></span>
@@ -581,7 +582,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protact" id="" value="Aucune"
+                                        <input  {{$result->protactAucune ? 'checked' : '' }} type="checkbox" name="protact" id="" value="Aucune"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Aucune</span>
                                         <span class="custom-control-description"></span>
@@ -596,7 +597,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protsug" id="" value="Gouvernementale"
+                                        <input  {{$result->echprotsugGouvernementale ? 'checked' : '' }} type="checkbox" name="protsug" id="" value="Gouvernementale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Gouvernementale</span>
                                         <span class="custom-control-description"></span>
@@ -604,7 +605,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protsug" id="" value="Ministerielle"
+                                        <input  {{$result->echprotsugMinisterielle ? 'checked' : '' }} type="checkbox" name="protsug" id="" value="Ministerielle"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Ministérielle</span>
                                         <span class="custom-control-description"></span>
@@ -614,7 +615,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protsug" id="" value="Prefectorale"
+                                        <input  {{$result->echprotsugPrefectorale ? 'checked' : '' }} type="checkbox" name="protsug" id="" value="Prefectorale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Préfectorale</span>
                                         <span class="custom-control-description"></span>
@@ -622,7 +623,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protsug" id="" value="Municipale"
+                                        <input  {{$result->echprotsugMunicipale ? 'checked' : '' }} type="checkbox" name="protsug" id="" value="Municipale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Municipale</span>
                                         <span class="custom-control-description"></span>
@@ -632,7 +633,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="protsug" id="" value="Aucune"
+                                        <input  {{$result->echprotsugAucune ? 'checked' : '' }} type="checkbox" name="protsug" id="" value="Aucune"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Aucune</span>
                                         <span class="custom-control-description"></span>
@@ -648,7 +649,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="classesug" id="" value="Mondiale"
+                                        <input  {{$result->echclassesugMondiale ? 'checked' : '' }} type="checkbox" name="classesug" id="" value="Mondiale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Mondiale</span>
                                         <span class="custom-control-description"></span>
@@ -656,7 +657,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="classesug" id="" value="Nationale"
+                                        <input  {{$result->echclassesugNationale ? 'checked' : '' }} type="checkbox" name="classesug" id="" value="Nationale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Nationale</span>
                                         <span class="custom-control-description"></span>
@@ -666,7 +667,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="classesug" id="" value="Departementale"
+                                        <input  {{$result->echclassesugDepartementale ? 'checked' : '' }} type="checkbox" name="classesug" id="" value="Departementale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Départementale</span>
                                         <span class="custom-control-description"></span>
@@ -674,7 +675,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="classesug" id="" value="Municipale"
+                                        <input  {{$result->echclassesugMunicipale ? 'checked' : '' }} type="checkbox" name="classesug" id="" value="Municipale"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Municipale</span>
                                         <span class="custom-control-description"></span>
@@ -684,7 +685,7 @@
                                 <div class="row p-2">
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="classesug" id="" value="Aucune"
+                                        <input  {{$result->echclassesugAucune ? 'checked' : '' }} type="checkbox" name="classesug" id="" value="Aucune"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Aucune</span>
                                         <span class="custom-control-description"></span>
@@ -706,14 +707,14 @@
                             <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="behName1">Synthèse historique :</label>
-                                <textarea required name="synthese" id="synthese" rows="4" class="form-control"></textarea>
+                                <textarea   required name="synthese" id="synthese" rows="4" class="form-control">{{$result->Synthesehisto}}</textarea>
                             </div>
                             </div>
 
                             <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="behName1">Diagnostic architectural :</label>
-                                <textarea required name="diagnostic" id="diagnostic" rows="4" class="form-control"></textarea>
+                                <textarea   required name="diagnostic" id="diagnostic" rows="4" class="form-control">{{$result->Diagnosticarch}}</textarea>
                             </div>
                             </div>
 
@@ -721,7 +722,7 @@
                             <div class="mb-3">
 
                                 <label for="location1">Date d'inventaire :</label>
-                                <input required type="date" class="form-control" id="dateInvent" name="dateInvent" />
+                                <input  required type="date" class="form-control text-dark" id="dateInvent" value="{{$result->Dateinvent}}" name="dateInvent" />
                             </div>
                             </div>
 
@@ -729,7 +730,7 @@
                             <div class="mb-3">
 
                                 <label for="location1">Inventoriste du patrimoine :</label>
-                                <input required type="text" class="form-control" id="inventoriste" name="inventoriste" />
+                                <input  required type="text" class="form-control text-dark" id="inventoriste" value="{{$result->Inventoriste}}" name="inventoriste" />
                             </div>
                             </div>
 
@@ -737,7 +738,7 @@
                             <div class="mb-3">
 
                                 <label for="location1">Institution demandeuse :</label>
-                                <input required type="text" class="form-control" id="institution" name="institution" />
+                                <input  value="Ambassade de France au Bénin" required type="text" class="form-control text-dark" id="institution" name="institution" />
                             </div>
                             </div>
                         </div>
@@ -749,6 +750,14 @@
                             <div class="mb-3">
 
                                 <label for="location1">Photos entiers :</label>
+                                @if ($imagesEntier)
+                                    <ul class="text-dark p-4">
+                                        @foreach ($imagesEntier as $picEntier)
+                                            <li><a class="text-dark" href="/storage/{{$picEntier->Cheminphoto}}" target="_blank">{{$picEntier->Cheminphoto}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                
                                 <input  type="file" multiple class="form-control" id="photosEntier" name="photosEntier[]" />
                             </div>
                             </div>
@@ -757,6 +766,14 @@
                             <div class="mb-3">
 
                                 <label for="location1">Photos détails :</label>
+                                @if ($imagesDetails)
+                                    <ul class="text-dark p-4">
+                                        @foreach ($imagesDetails as $picDetails)
+                                            <li><a class="text-dark" href="/storage/{{$picDetails->Cheminphoto}}" target="_blank">{{$picDetails->Cheminphoto}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
                                 <input  type="file" multiple class="form-control" id="photosDetails" name="photosDetails[]" />
                             </div>
                             </div>
@@ -765,6 +782,14 @@
                             <div class="mb-3">
 
                                 <label for="location1">Photos aériennes objet :</label>
+                                @if ($imagesAerobj)
+                                    <ul class="text-dark p-4">
+                                        @foreach ($imagesAerobj as $picAerobj)
+                                            <li><a class="text-dark" href="/storage/{{$picAerobj->Cheminphoto}}" target="_blank">{{$picAerobj->Cheminphoto}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
                                 <input  type="file" multiple class="form-control" id="photosAerObj" name="photosAerObj[]" />
                             </div>
                             </div>
@@ -773,6 +798,14 @@
                             <div class="mb-3">
 
                                 <label for="location1">Photos aériennes ilot :</label>
+                                @if ($imagesAerIlot)
+                                    <ul class="text-dark p-4">
+                                        @foreach ($imagesAerIlot as $picAerilot)
+                                            <li><a class="text-dark" href="/storage/{{$picAerilot->Cheminphoto}}" target="_blank">{{$picAerilot->Cheminphoto}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
                                 <input  type="file" multiple class="form-control" id="photosAerIlot" name="photosAerIlot[]" />
                             </div>
                             </div>
@@ -800,6 +833,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
 
         function getCommune()
         {
@@ -857,11 +891,10 @@
             });
         }
 
-
         $(function()
         {
             getDepartement();
-
+            
             $('input[name="proppub"]').click(function() {
                 $('input[name="proppub"]').not(this).prop('checked', false);
             });
@@ -901,6 +934,11 @@
             $('input[name="classesug"]').click(function() {
                 $('input[name="classesug"]').not(this).prop('checked', false);
             });
-        });
+
+            
+            $('#departement').val('{{$result->Codedepartement}}').change();
+            $('#commune').val('{{$result->Codecommune}}').change();
+            $('#arrondissement').val('{{$result->Codearrondis}}').change();
+        }); 
     </script>
 @endsection

@@ -152,8 +152,8 @@ $(".validation-wizard").steps({
   onFinished: function (event, currentIndex) {
     form.submit();
     new swal(
-      "Form Submitted!",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed."
+      "Formulaire soumis",
+      "Soumission effectuée."
     );
   },
 }),

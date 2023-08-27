@@ -13,8 +13,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('storage/{filename}', function ($filename)
+{
+    $path = storage_path('app/public/fichiers/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+});
 
+Route::post('/updatePaper', [MainController::class,'updatePaper']);
+Route::get('/editFiche/{fiche}', [MainController::class,'editFiche']);
+Route::get('/showFiche/{fiche}', [MainController::class,'showFiche']);
 Route::get('/getFichesAjax', [MainController::class,'getFichesAjax']);
+Route::get('/deleteFiche/{fiche}', [MainController::class,'deleteFiche']);
 Route::get('/fiches', [MainController::class,'displayAll']);
 Route::post('/savePaper', [MainController::class,'savePaper']);
 Route::get('/getArrondissementAjax', [MainController::class,'getArrondissement']);
