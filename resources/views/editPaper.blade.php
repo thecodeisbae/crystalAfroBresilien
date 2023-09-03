@@ -227,7 +227,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input  {{$result->propprivIndividuelle ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Individuel"
+                                <input  {{$result->propprivIndividuelle ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Individuelle"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Individuel</span>
                                 <span class="custom-control-description"></span>
@@ -516,7 +516,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input  {{$result->Abandonoccup ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Abandonne"
+                                        <input  {{$result->Abandonoccup ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Abandonoccup"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Abandonné</span>
                                         <span class="custom-control-description"></span>
@@ -850,6 +850,10 @@
                     output += '<option value="'+element.Codecommune+'">'+element.Commune+'</option>';
                    });
                    $('#commune').html(output)
+                   if('{{$result->commune}}' != '')
+                   {
+                       $('#commune').val('{{$result->commune}}').change();
+                   }
                 }
             });
         }
@@ -868,6 +872,11 @@
                     output += '<option value="'+element.Codearrondis+'">'+element.Arrondissement+'</option>';
                    });
                    $('#arrondissement').html(output)
+
+                    if('{{$result->arrondissement}}' != '')
+                    {
+                        $('#arrondissement').val('{{$result->arrondissement}}').change();
+                    }
                 }
             });
         }
@@ -887,6 +896,11 @@
                     output += '<option value="'+element.Codedepartement+'">'+element.Departement+'</option>';
                    });
                    $('#departement').append(output)
+                   if('{{$result->Codedepartement}}' != '')
+                   {
+                        $('#departement').val('{{$result->Codedepartement}}').change();
+                        getCommune();
+                   }
                 }
             });
         }
@@ -936,9 +950,6 @@
             });
 
             
-            $('#departement').val('{{$result->Codedepartement}}').change();
-            $('#commune').val('{{$result->Codecommune}}').change();
-            $('#arrondissement').val('{{$result->Codearrondis}}').change();
         }); 
     </script>
 @endsection

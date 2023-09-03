@@ -110,7 +110,7 @@
                             <label for="commune">Commune :</label>
                             <select disabled required class="form-select" id="commune" name="commune">
                                 @foreach ($communes as $com)
-                                    <option value="{{$com->Codecommune}}" {{$com->Codecommune == $result->Codecommune ? 'selected' : '' }}>{{$com->Commune}}</option>
+                                    <option value="{{$com->Codecommune}}" {{$com->Codecommune == $result->commune ? 'selected' : '' }}>{{$com->Commune}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -123,7 +123,7 @@
                             <label for="location1">Arrondissement :</label>
                             <select disabled required class="form-select" id="arrondissement" name="arrondissement">
                                 @foreach ($arrondissements as $arr)
-                                    <option value="{{$arr->Codearrondis}}" {{$arr->Codearrondis == $result->Codearrondis ? 'selected' : '' }}>{{$arr->Arrondissement}}</option>
+                                    <option value="{{$arr->Codearrondis}}" {{$arr->Codearrondis == $result->arrondissement ? 'selected' : '' }}>{{$arr->Arrondissement}}</option>
                                 @endforeach 
                             </select>
                         </div>
@@ -234,7 +234,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input onclick="return false;" {{$result->propprivIndividuelle ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Individuel"
+                                <input onclick="return false;" {{$result->propprivIndividuelle ? 'checked' : '' }} type="checkbox" name="proppriv" id="" value="Individuelle"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Individuel</span>
                                 <span class="custom-control-description"></span>
@@ -523,7 +523,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input onclick="return false;" {{$result->Abandonoccup ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Abandonne"
+                                        <input onclick="return false;" {{$result->Abandonoccup ? 'checked' : '' }} type="checkbox" name="occup" id="" value="Abandonoccup"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Abandonné</span>
                                         <span class="custom-control-description"></span>

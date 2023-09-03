@@ -177,7 +177,7 @@
                                                     <div class="col-md-6">
                                                         <label class="custom-control custom-checkbox">
                                                             <input type="checkbox" name="proppriv" id=""
-                                                                value="Individuel" class="custom-control-input">
+                                                                value="Individuelle" class="custom-control-input">
                                                             <span class="custom-control-indicator">Individuel</span>
                                                             <span class="custom-control-description"></span>
                                                         </label>
@@ -421,7 +421,7 @@
                                                         <div class="col-md-6">
                                                             <label class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="occup" id=""
-                                                                    value="Abandonne" class="custom-control-input">
+                                                                    value="Abandonoccup" class="custom-control-input">
                                                                 <span class="custom-control-indicator">Abandonné</span>
                                                                 <span class="custom-control-description"></span>
                                                             </label>
@@ -654,6 +654,7 @@
                                                     <a href="/showFiche/{{$fiche->Codeident}}" class="text-primary"><i class="me-2 fa fa-eye"></i></a>
                                                     <a href="/editFiche/{{$fiche->Codeident}}" class="text-success"><i class="me-2 fa fa-edit"></i></a>
                                                     <a href="/deleteFiche/{{$fiche->Codeident}}" onclick="return confirm('Supprimer cette fiche ?');" class="text-danger"><i class="me-2 fa fa-trash"></i></a>
+                                                    <a href="/generatePdf/{{$fiche->Codeident}}" class="text-info"><i class="me-2 fa fa-print"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -677,6 +678,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function reset()
+        {
+            loction.reload();
+        }
 
         $("#zero_config").DataTable({
                         "language": {

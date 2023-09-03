@@ -226,7 +226,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom-control custom-checkbox">
-                                <input type="checkbox" name="proppriv" id="" value="Individuel"
+                                <input type="checkbox" name="proppriv" id="" value="Individuelle"
                                     class="custom-control-input">
                                 <span class="custom-control-indicator">Individuel</span>
                                 <span class="custom-control-description"></span>
@@ -515,7 +515,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="occup" id="" value="Abandonne"
+                                        <input type="checkbox" name="occup" id="" value="Abandonoccup"
                                         class="custom-control-input">
                                         <span class="custom-control-indicator">Abandonné</span>
                                         <span class="custom-control-description"></span>

@@ -2,6 +2,12 @@
 <html lang="fr">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
+
+
+    /* body{
+        font-family: helvetica!important;
+    } */
+
     .border-td {
         border: 1px solid;
         padding: .2em;
@@ -14,7 +20,7 @@
     }
 
     .bold-text {
-        /* font-weight: bolder; */
+        font-weight: bolder;
     }
 
     .full-table {
@@ -45,12 +51,13 @@
     .w-adjust-cons{
         width:8.5rem!important;
     }
+
 </style>
 
 <body class="tiny-font">
-    <table class="full-table" cellspacing="0">
-        <tr>
-            <td colspan="3" class="border-td bold-text">FICHE IPAAF/2023-2024/00-</td>
+    <table class="full-table" style="margin-top: 3rem;" cellspacing="0">
+        <tr >
+            <td colspan="3" class="border-td bold-text">FICHE IPAAF/2023-2024/[FICHE]</td>
         </tr>
         <tr>
             <td colspan="3" class="border-td bg-grey">1. OPERATION ET ACTEURS</td>
@@ -75,25 +82,25 @@
             <td colspan="3" class="border-td">2.1 Nature de l'objet</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[NATURE]</td>
         </tr>
         <tr>
             <td colspan="3" class="border-td">2.2 Dénomination officielle</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[DENO_OFF]</td>
         </tr>
         <tr>
             <td colspan="3" class="border-td">2.3 Dénomination populaire</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[DENO_POP]</td>
         </tr>
         <tr>
             <td colspan="3" class="border-td">2.4 Autres dénomination</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[AUTRES_DENO]</td>
         </tr>
 
         <tr>
@@ -106,7 +113,7 @@
                         <td class="border-td">3.1 Département</td>
                     </tr>
                     <tr>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[DEP]</td>
                     </tr>
                 </table>
             </td>
@@ -118,9 +125,9 @@
                         <td class="border-td">3.4 Quartier/Ville</td>
                     </tr>
                     <tr>
-                        <td class="border-td">&nbsp;</td>
-                        <td class="border-td">&nbsp;</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[COM]</td>
+                        <td class="border-td">[ARR]</td>
+                        <td class="border-td">[QUARTIER]</td>
                     </tr>
                 </table>
             </td>
@@ -134,18 +141,18 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-geo">3.5.1 Latitude</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[LAT]</td>
                     </tr>
                 </table>
             </td>
-            <td class="border-td" colspan="2" rowspan="2">&nbsp;</td>
+            <td class="border-td" colspan="2" rowspan="2">[ADRESSE]</td>
         </tr>
         <tr>
             <td class="border-td">
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-geo">3.5.2 Longitude</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[LONG]</td>
                     </tr>
                 </table>
             </td>
@@ -166,23 +173,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">4.1.1 Gouvernementale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPUB_GOUV]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.1.2 Départementale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPUB_DEP]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.1.3 Municipale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPUB_MUN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.1.4 Communautaire</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPUB_COM]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.1.5 Autres</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPUB_AUTRES]</td>
                     </tr>
                 </table>
             </td>
@@ -190,23 +197,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">4.2.1 Familiale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPRIV_FAM]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.2.2 Individuelle</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPRIV_IND]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.2.3 Associative</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPRIV_ASS]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.2.4 Communautaire</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPRIV_COM]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.2.5 Autres</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROPPRIV_AUTRES]</td>
                     </tr>
                 </table>
             </td>
@@ -214,23 +221,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">4.3.1 Nom/prénoms</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[NOMPRENOMS]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.3.2 Lien avec l'objet</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[LIEN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.3.3 Résidence</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[RESIDENCE]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">4.3.4 Contact 1</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[CONTACT1]</td>
                     </tr>
                     <tr>
                         <td class="border-td">4.3.5 Contact 2</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td">[CONTACT2]</td>
                     </tr>
                 </table>
             </td>
@@ -251,38 +258,38 @@
             <td class="border-td">
                 <table style="width: 100%;" class=""  cellspacing="0">
                     <tr >
-                        <td class="border-td" style="height: 2.1rem;width: 6rem;">5.1.1 Bien immeuble</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" style="height: 2.2rem;width: 6rem;">5.1.1 Bien immeuble</td>
+                        <td class="border-td" align="center">[BIEN_IMMEUBLE]</td>
                     </tr>
                     <tr>
                         <td class="border-td" style="height: 2.1rem;width: 6rem;">5.1.2 Bien meubles associés</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[BIEN_MEUBLE]</td>
                     </tr>
                     <tr>
                         <td class="border-td" style="height: 2.1rem;width: 6rem;">5.1.3 Bien immatériels associés</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[BIEN_IMMAT]</td>
                     </tr>
                 </table>
             </td>
             <td class="border-td">
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
-                        <td class="border-td" style="height: 1rem;width: 6rem;">5.1.1.1 Monument</td>
+                        <td class="border-td" style="height: .9rem;width: 6rem;">5.1.1.1 Monument</td>
                         <td class="border-td" >5.1.1.2 Ensemble</td>
                         <td class="border-td">5.1.1.3 Site</td>
                     </tr>
                     <tr>
-                        <td class="border-td" style="height: 1rem;width: 6rem;">&nbsp;</td>
-                        <td class="border-td">&nbsp;</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" style="height: 1rem;width: 6rem;" align="center">[MONUMENT]</td>
+                        <td class="border-td" align="center">[ENSEMBLE]</td>
+                        <td class="border-td" align="center">[SITE]</td>
                     </tr>
                     <tr>
                         <td class="border-td" style="height: 2rem;width: 6rem;">Description</td>
-                        <td class="border-td" colspan="2">&nbsp;</td>
+                        <td class="border-td" colspan="2">[BIENMEU_DESC]</td>
                     </tr>
                     <tr>
                         <td class="border-td" style="height: 2rem;width: 6rem;">Description</td>
-                        <td class="border-td" colspan="2">&nbsp;</td>
+                        <td class="border-td" colspan="2">[BIENIMMAT_DESC]</td>
                     </tr>
                 </table>
             </td>
@@ -301,23 +308,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-cons">6.1.1 Bon état</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[BON_ETAT]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.1.2 Ruine</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[RUINE]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.1.3 Dégradation avancée</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[DEG_AVC]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.1.4 Dégradation entamée</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[DEG_ENT]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.1.5 Démoli</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[DEMOLI]</td>
                     </tr>
                 </table>
             </td>
@@ -325,23 +332,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-cons">6.2.1 Non modifié</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[NON_MOD]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.2.2 Modification légère</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[MOD_LEG]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.2.3 Modification profonde</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[MOD_PROF]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.2.4 Modification réussie</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[MOD_REU]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.2.5 Modification dégradante</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[MOD_DEG]</td>
                     </tr>
                 </table>
             </td>
@@ -349,29 +356,29 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-cons">6.3.1 Résidence</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[RESI]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.3.2 Commerce</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[COMMER]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.3.3 Bureau</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[BUR]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.3.4 Abandonné</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ABAN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-cons">6.3.5 Squatté</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[SQUA]</td>
                     </tr>
                 </table>
             </td>
         </tr>
 
-        <tr>
+        <tr style="page-break-before: always;">
             <td colspan="3" class="border-td bg-grey">7. PROTECTION</td>
         </tr>
         <tr>
@@ -384,23 +391,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">7.1.1 Gouvernementale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROT_GOUV]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.1.2 Ministère</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROT_MIN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.1.3 Préfectorale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROT_PREF]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.1.4 Municipale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROT_MUN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.1.5 Aucune</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PROT_AUCU]</td>
                     </tr>
                 </table>
             </td>
@@ -408,23 +415,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">7.2.1 Gouvernementale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PSUG_GOUV]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.2.2 Ministérielle</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PSUG_MIN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.2.3 Préfectorale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PSUG_PREF]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.2.4 Municipale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PSUG_MUN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.2.5 Aucune</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[PSUG_AUCU]</td>
                     </tr>
                 </table>
             </td>
@@ -432,23 +439,23 @@
                 <table style="width: 100%;" cellspacing="0">
                     <tr>
                         <td class="border-td w-adjust-radio">7.3.1 Mondiale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ESUG_MOND]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.3.2 Nationale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ESUG_NAT]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.3.3 Départementale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ESUG_DEP]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.3.4 Municipale</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ESUG_MUN]</td>
                     </tr>
                     <tr>
                         <td class="border-td w-adjust-radio">7.3.5 Aucune</td>
-                        <td class="border-td">&nbsp;</td>
+                        <td class="border-td" align="center">[ESUG_AUCU]</td>
                     </tr>
                 </table>
             </td>
@@ -463,13 +470,13 @@
                 patrimoniteur )</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[SYNTHESE]</td>
         </tr>
         <tr>
             <td colspan="3" class="border-td">8.2 Diagnostic architectural ( l'architecte )</td>
         </tr>
         <tr>
-            <td colspan="3" class="border-td">&nbsp;</td>
+            <td colspan="3" class="border-td">[DIAGNOSTIC]</td>
         </tr>
 
         <tr>
@@ -481,8 +488,8 @@
             <td class="border-td">9.1 Institution demandeuse</td>
         </tr>
         <tr>
-            <td class="border-td">&nbsp;</td>
-            <td class="border-td">&nbsp;</td>
+            <td class="border-td">[DATE_INVENT]</td>
+            <td class="border-td">[INVENTORISTE]</td>
             <td class="border-td">Ambassade de France au Bénin</td>
         </tr>
 

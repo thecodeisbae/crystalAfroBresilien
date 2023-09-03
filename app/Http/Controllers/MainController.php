@@ -49,7 +49,7 @@ class MainController extends Controller
 
     function editFiche($fiche)
     {
-        $query = 'SELECT *,propident.Residence as propResidence, proppub.Gouvernementale as proppubGouvernementale,
+        $query = 'SELECT *,com.Codecommune as commune,arr.Codearrondis as arrondissement,propident.Residence as propResidence, proppub.Gouvernementale as proppubGouvernementale,
                 proppub.Departementale as proppubDepartementale,
                 proppub.Municipale as proppubMunicipale,
                 proppub.Communautaire as proppubCommunautaire,
@@ -90,7 +90,7 @@ class MainController extends Controller
         $query .= ' INNER JOIN localisation loc ON loc.Codelocal  = ident.Codelocal
         INNER JOIN arrondissement arr ON arr.Codearrondis = loc.Codearrondis
         INNER JOIN commune com ON com.Codecommune  = arr.Codecommune
-        INNER JOIN departement dep ON dep.Codecommune  = arr.Codecommune
+        INNER JOIN departement dep ON dep.Codedepartement  = com.Codedepartement
         INNER JOIN propriete prop ON ident.Codepropri = prop.Codepropri
         INNER JOIN proprieteident propident ON ident.Codepropri = propident.Codepropri
         INNER JOIN qualification qual ON ident.Codequalif  = qual.Codequalif
@@ -139,7 +139,7 @@ class MainController extends Controller
 
     function showFiche($fiche)
     {
-        $query = 'SELECT *,propident.Residence as propResidence, proppub.Gouvernementale as proppubGouvernementale,
+        $query = 'SELECT *,com.Codecommune as commune,arr.Codearrondis as arrondissement,propident.Residence as propResidence, proppub.Gouvernementale as proppubGouvernementale,
                          proppub.Departementale as proppubDepartementale,
                          proppub.Municipale as proppubMunicipale,
                          proppub.Communautaire as proppubCommunautaire,
@@ -180,7 +180,7 @@ class MainController extends Controller
         $query .= ' INNER JOIN localisation loc ON loc.Codelocal  = ident.Codelocal
                     INNER JOIN arrondissement arr ON arr.Codearrondis = loc.Codearrondis
                     INNER JOIN commune com ON com.Codecommune  = arr.Codecommune
-                    INNER JOIN departement dep ON dep.Codecommune  = arr.Codecommune
+                    INNER JOIN departement dep ON dep.Codedepartement  = com.Codedepartement
                     INNER JOIN propriete prop ON ident.Codepropri = prop.Codepropri
                     INNER JOIN proprieteident propident ON ident.Codepropri = propident.Codepropri
                     INNER JOIN qualification qual ON ident.Codequalif  = qual.Codequalif
@@ -201,6 +201,7 @@ class MainController extends Controller
         $query .= ' LEFT JOIN protectionactuelle protact ON protact.Codeprotec  = prot.Codeprotec  ';
         $query .= ' LEFT JOIN echelleprotectsuggeree echprotsug ON echprotsug.Codeprotec  = prot.Codeprotec  ';
         $query .= ' LEFT JOIN echelleclasssugeree echclassesug ON echclassesug.Codeprotec  = prot.Codeprotec  ';
+
 
         $result = \DB::select($query.' WHERE ident.Codeident = ?',[$fiche])[0];
         
@@ -246,7 +247,7 @@ class MainController extends Controller
         $query .= ' INNER JOIN localisation loc ON loc.Codelocal  = ident.Codelocal
                     INNER JOIN arrondissement arr ON arr.Codearrondis = loc.Codearrondis
                     INNER JOIN commune com ON com.Codecommune  = arr.Codecommune
-                    INNER JOIN departement dep ON dep.Codecommune  = arr.Codecommune
+                    INNER JOIN departement dep ON dep.Codedepartement  = com.Codedepartement
                     INNER JOIN propriete prop ON ident.Codepropri = prop.Codepropri
                     INNER JOIN qualification qual ON ident.Codequalif  = qual.Codequalif
                     INNER JOIN conservation cons ON cons.Codeconserv  = ident.Codeconserv
@@ -885,16 +886,16 @@ class MainController extends Controller
             $inventaire = $code;
 
             //Identification
-            do
-            {
-                $code = random_int(10000001, 99999999);
-                $valid = false;
-                $data = \DB::select('SELECT * FROM identification where Codeident   = ?',[$code]);
-            }
-            while ($data);
+            
+            $data = \DB::select('SELECT * FROM compteurv ',[])[0];
+            $actu = $data->Compteurcodeident;
+            $code = 'FA'.sprintf("%06s", $actu+1);
+            
             \DB::insert('INSERT INTO identification (Codeident,Synthesehisto,Diagnosticarch,Nature,Denominationof,Denominationpop,Autredenomination,Codelocal,Codepropri,Codequalif,Codeconserv,Codeprotec,Codeinfoinvent)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',[$code,request('synthese'),request('diagnostic'),request('nature'),request('denominationOff'),request('denominationPop'),request('autresDenomination'),$localisation,$propriete,$qualification,$conservation,$protection,$inventaire]);
             $identification = $code;
+
+            \DB::update('UPDATE compteurv set Compteurcodeident = ?',[$actu+1]);
 
             //Image
             do
@@ -1044,12 +1045,150 @@ class MainController extends Controller
         }
     }
 
-    function generatePdf()
+    function generatePdf($fiche)
     {
+        $query = 'SELECT *,com.Codecommune as commune,arr.Codearrondis as arrondissement,propident.Residence as propResidence, proppub.Gouvernementale as proppubGouvernementale,
+                proppub.Departementale as proppubDepartementale,
+                proppub.Municipale as proppubMunicipale,
+                proppub.Communautaire as proppubCommunautaire,
+                proppub.Autrepub as proppubAutrepub,
+        ';
+
+
+        $query .= ' proppriv.Familiale as propprivFamiliale,
+        proppriv.Individuelle as propprivIndividuelle,
+        proppriv.Associative as propprivAssociative,
+        proppriv.Communautaire as propprivCommunautaire,
+        proppriv.Autrepriv as propprivAutrepriv,
+        ';
+
+        $query .= ' protact.Gouvernementale as protactGouvernementale,
+        protact.Ministerielle as protactMinisterielle,
+        protact.Prefectorale as protactPrefectorale,
+        protact.Municipale as protactMunicipale,
+        protact.Aucune as protactAucune,
+        ';
+
+        $query .= ' echprotsug.Gouvernementale as echprotsugGouvernementale,
+        echprotsug.Ministerielle as echprotsugMinisterielle,
+        echprotsug.Prefectorale as echprotsugPrefectorale,
+        echprotsug.Municipale as echprotsugMunicipale,
+        echprotsug.Aucune as echprotsugAucune,
+        ';
+
+        $query .= ' echclassesug.Mondiale as echclassesugMondiale,
+        echclassesug.Nationale as echclassesugNationale,
+        echclassesug.Departementale as echclassesugDepartementale,
+        echclassesug.Municipale as echclassesugMunicipale,
+        echclassesug.Aucune as echclassesugAucune
+        ';
+
+        $query .= '  FROM identification ident ';
+
+        $query .= ' INNER JOIN localisation loc ON loc.Codelocal  = ident.Codelocal
+        INNER JOIN arrondissement arr ON arr.Codearrondis = loc.Codearrondis
+        INNER JOIN commune com ON com.Codecommune  = arr.Codecommune
+        INNER JOIN departement dep ON dep.Codedepartement  = com.Codedepartement
+        INNER JOIN propriete prop ON ident.Codepropri = prop.Codepropri
+        INNER JOIN proprieteident propident ON ident.Codepropri = propident.Codepropri
+        INNER JOIN qualification qual ON ident.Codequalif  = qual.Codequalif
+        INNER JOIN conservation cons ON cons.Codeconserv  = ident.Codeconserv
+        INNER JOIN protection prot ON prot.Codeprotec   = ident.Codeprotec
+        INNER JOIN infoinventaire infoinvent ON infoinvent.Codeinfoinvent  = ident.Codeinfoinvent
+        LEFT JOIN coordonnees coor ON coor.Codelocal = loc.Codelocal
+        ';
+
+        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';  
+        $query .= ' LEFT JOIN proprietepriv proppriv ON proppriv.Codepropri = prop.Codepropri ';
+        $query .= ' LEFT JOIN bienimmeuble bienimm ON bienimm.Codequalif  = qual.Codequalif  ';
+        $query .= ' LEFT JOIN bienmeuble bienmeu ON bienmeu.Codequalif  = qual.Codequalif  ';
+        $query .= ' LEFT JOIN bienimmateriel bienima ON bienima.Codequalif  = qual.Codequalif  ';
+        $query .= ' LEFT JOIN etatgeneral etatgene ON etatgene.Codeconserv  = cons.Codeconserv  ';
+        $query .= ' LEFT JOIN etatmodification etatmodif ON etatmodif.Codeconserv  = cons.Codeconserv  ';
+        $query .= ' LEFT JOIN etatoccupation etatoccup ON etatoccup.Codeconserv  = cons.Codeconserv  ';
+        $query .= ' LEFT JOIN protectionactuelle protact ON protact.Codeprotec  = prot.Codeprotec  ';
+        $query .= ' LEFT JOIN echelleprotectsuggeree echprotsug ON echprotsug.Codeprotec  = prot.Codeprotec  ';
+        $query .= ' LEFT JOIN echelleclasssugeree echclassesug ON echclassesug.Codeprotec  = prot.Codeprotec  ';
+
+
+        $result = \DB::select($query.' WHERE ident.Codeident = ?',[$fiche])[0];
 
         // instantiate and use the dompdf class
         $dompdf = new Dompdf();
-        $dompdf->loadHtml(file_get_contents('generate.html'));
+
+        $output = file_get_contents('generate.html');
+
+        $output = str_replace('[NATURE]',$result->Nature ?? '',$output);
+        $output = str_replace('[DENO_OFF]',$result->Denominationof ?? '',$output);
+        $output = str_replace('[DENO_POP]',$result->Denominationpop ?? '',$output);
+        $output = str_replace('[AUTRES_DENO]',$result->Autredenomination ?? '',$output);
+        $output = str_replace('[DEP]',$result->Departement ?? '',$output);
+        $output = str_replace('[COM]',$result->Commune ?? '',$output);
+        $output = str_replace('[ARR]',$result->Arrondissement ?? '',$output);
+        $output = str_replace('[QUARTIER]',$result->Localite ?? '',$output);
+        $output = str_replace('[LAT]',$result->Latitude ?? '',$output);
+        $output = str_replace('[LONG]',$result->Longitude ?? '',$output);
+        $output = str_replace('[ADRESSE]',$result->Adresse ?? '',$output);
+        $output = str_replace('[PROPPUB_GOUV]',$result->proppubGouvernementale ? 'X' : '',$output);
+        $output = str_replace('[PROPPUB_DEP]',$result->proppubDepartementale ? 'X' : '',$output);
+        $output = str_replace('[PROPPUB_MUN]',$result->proppubMunicipale ? 'X' : '',$output);
+        $output = str_replace('[PROPPUB_COM]',$result->proppubCommunautaire ? 'X' : '',$output);
+        $output = str_replace('[PROPPUB_AUTRES]',$result->proppubAutrepub ? 'X' : '',$output);
+        $output = str_replace('[PROPPRIV_FAM]',$result->propprivFamiliale ? 'X' : '',$output);
+        $output = str_replace('[PROPPRIV_IND]',$result->propprivIndividuelle ? 'X' : '',$output);
+        $output = str_replace('[PROPPRIV_ASS]',$result->propprivAssociative ? 'X' : '',$output);
+        $output = str_replace('[PROPPRIV_COM]',$result->propprivCommunautaire ? 'X' : '',$output);
+        $output = str_replace('[PROPPRIV_AUTRES]',$result->propprivAutrepriv ? 'X' : '',$output);
+        $output = str_replace('[NOMPRENOMS]',$result->Nompren ?? '',$output);
+        $output = str_replace('[LIEN]',$result->Lienobj ?? '',$output);
+        $output = str_replace('[RESIDENCE]',$result->propResidence ?? '',$output);
+        $output = str_replace('[CONTACT1]',$result->Contact1 ?? '',$output);
+        $output = str_replace('[CONTACT2]',$result->Contact2 ?? '',$output);
+        $output = str_replace('[BIEN_IMMEUBLE]',$result->Codebienimmeuble ? 'X' : '',$output);
+        $output = str_replace('[BIEN_MEUBLE]',$result->Cochebienmeuble ? 'X' : '',$output);
+        $output = str_replace('[BIEN_IMMAT]',$result->Cochebienimmat ? 'X' : '',$output);
+        $output = str_replace('[MONUMENT]',$result->Monument ? 'X' : '',$output);
+        $output = str_replace('[ENSEMBLE]',$result->Ensemble ? 'X' : '',$output);
+        $output = str_replace('[SITE]',$result->Site ? 'X' : '',$output);
+        $output = str_replace('[BIENMEU_DESC]',$result->Descriptionbienmeuble ?? '',$output);
+        $output = str_replace('[BIENIMMAT_DESC]',$result->Descriptionbienimmat ?? '',$output);
+        $output = str_replace('[BON_ETAT]',$result->Bonetat ? 'X' : '',$output);
+        $output = str_replace('[RUINE]',$result->Ruine ? 'X' : '',$output);
+        $output = str_replace('[DEG_AVC]',$result->Degradationavance ? 'X' : '',$output);
+        $output = str_replace('[DEG_ENT]',$result->Degradationentame ? 'X' : '',$output);
+        $output = str_replace('[DEMOLI]',$result->Demoli ? 'X' : '',$output);
+        $output = str_replace('[NON_MOD]',$result->Nonmodifie ? 'X' : '',$output);
+        $output = str_replace('[MOD_LEG]',$result->Modificationlegere ? 'X' : '',$output);
+        $output = str_replace('[MOD_PROF]',$result->Modificationprof ? 'X' : '',$output);
+        $output = str_replace('[MOD_REU]',$result->Modificationreussie ? 'X' : '',$output);
+        $output = str_replace('[MOD_DEG]',$result->Modificationdegra ? 'X' : '',$output);
+        $output = str_replace('[RESI]',$result->Residence ? 'X' : '',$output);
+        $output = str_replace('[COMMER]',$result->Commerce ? 'X' : '',$output);
+        $output = str_replace('[BUR]',$result->Bureau ? 'X' : '',$output);
+        $output = str_replace('[ABAN]',$result->Abandonoccup ? 'X' : '',$output);
+        $output = str_replace('[SQUA]',$result->Squatte ? 'X' : '',$output);
+        $output = str_replace('[PROT_GOUV]',$result->protactGouvernementale ? 'X' : '',$output);
+        $output = str_replace('[PROT_MIN]',$result->protactMinisterielle ? 'X' : '',$output);
+        $output = str_replace('[PROT_PREF]',$result->protactPrefectorale ? 'X' : '',$output);
+        $output = str_replace('[PROT_MUN]',$result->protactMunicipale ? 'X' : '',$output);
+        $output = str_replace('[PROT_AUCU]',$result->protactAucune ? 'X' : '',$output);
+        $output = str_replace('[PSUG_GOUV]',$result->echprotsugGouvernementale ? 'X' : '',$output);
+        $output = str_replace('[PSUG_MIN]',$result->echprotsugMinisterielle ? 'X' : '',$output);
+        $output = str_replace('[PSUG_PREF]',$result->echprotsugPrefectorale ? 'X' : '',$output);
+        $output = str_replace('[PSUG_MUN]',$result->echprotsugMunicipale ? 'X' : '',$output);
+        $output = str_replace('[PSUG_AUCU]',$result->echprotsugAucune ? 'X' : '',$output);
+        $output = str_replace('[ESUG_MOND]',$result->echclassesugMondiale ? 'X' : '',$output);
+        $output = str_replace('[ESUG_NAT]',$result->echclassesugNationale ? 'X' : '',$output);
+        $output = str_replace('[ESUG_DEP]',$result->echclassesugDepartementale ? 'X' : '',$output);
+        $output = str_replace('[ESUG_MUN]',$result->echclassesugMunicipale ? 'X' : '',$output);
+        $output = str_replace('[ESUG_AUCU]',$result->echclassesugAucune ? 'X' : '',$output);
+        $output = str_replace('[SYNTHESE]',$result->Synthesehisto ?? '',$output);
+        $output = str_replace('[DIAGNOSTIC]',$result->Diagnosticarch ?? '',$output);
+        $output = str_replace('[DATE_INVENT]',date('d-m-Y',strtotime($result->Dateinvent)) ?? '',$output);
+        $output = str_replace('[INVENTORISTE]',$result->Inventoriste ?? '',$output);
+        $output = str_replace('[FICHE]',$fiche ?? '',$output);
+
+        $dompdf->loadHtml($output);
 
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
