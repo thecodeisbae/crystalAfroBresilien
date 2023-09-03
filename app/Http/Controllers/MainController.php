@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
 
 class MainController extends Controller
 {
@@ -1041,6 +1042,24 @@ class MainController extends Controller
             \DB::rollback();
             dd($e);
         }
+    }
+
+    function generatePdf()
+    {
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(file_get_contents('generate.html'));
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $nom = 'Fiche.pdf';
+        $dompdf->stream($nom, array("Attachment" => false));
     }
 
 }

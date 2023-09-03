@@ -40,3 +40,5 @@ Route::get('/', [MainController::class,'login']);
 Route::get('/forget', [MainController::class,'forget']);
 Route::get('/dashboard', [MainController::class,'dashboard']);
 Route::get('/addPaper', [MainController::class,'addPaper']);
+
+Route::get('/generatePdf', [MainController::class,'generatePdf']);
