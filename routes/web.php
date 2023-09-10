@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/front', [MainController::class,'front']);
+Route::get('/about', [MainController::class,'about']);
+Route::get('/contact', [MainController::class,'contact']);
+
 Route::get('storage/{filename}', function ($filename)
 {
     $path = storage_path('app/public/fichiers/' . $filename);

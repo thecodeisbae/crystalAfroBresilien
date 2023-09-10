@@ -1201,4 +1201,20 @@ class MainController extends Controller
         $dompdf->stream($nom, array("Attachment" => false));
     }
 
+
+    function front()
+    {
+        return view('front.index');
+    }
+
+    function about()
+    {
+        return view('front.about');
+    }
+
+    function contact()
+    {
+        return view('front.contact');
+    }
+
 }
