@@ -80,6 +80,10 @@
 			text-align: justify!important;
 		}
 
+		.banner-area{
+			background-position: initial;
+		}
+
 	</style>
 </head>
 
@@ -90,7 +94,7 @@
 			<div class="row">
 				<div class="col-6 top-head-left">
 					<ul>
-						<li><a href="#">Accéder au backoffice</a></li>
+						<li><a href="/login">Accéder au backoffice</a></li>
 					</ul>
 				</div>
 				<div class="col-6 top-head-right">
@@ -114,7 +118,7 @@
 						<li><a href="/front">Accueil</a></li>
 						<li  class="menu-active"><a href="#">A propos</a></li>
 						<li><a href="#">Galerie</a></li>
-						<li><a href="/contact">Contact</a></li>
+						<li><a href="/contact">Contactez-nous</a></li>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>

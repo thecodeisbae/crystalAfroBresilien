@@ -65,6 +65,10 @@
             font-family: 'Montserrat' !important;
 		}
 
+		.banner-area{
+			background-position: initial;
+		}
+
 	</style>
 </head>
 
@@ -75,7 +79,7 @@
 			<div class="row">
 				<div class="col-6 top-head-left">
 					<ul>
-						<li><a href="#">Accéder au backoffice</a></li>
+						<li><a href="/login">Accéder au backoffice</a></li>
 					</ul>
 				</div>
 				<div class="col-6 top-head-right">
@@ -99,7 +103,7 @@
 						<li class="menu-active"><a href="#">Accueil</a></li>
 						<li><a href="/about">A propos</a></li>
 						<li><a href="#">Galerie</a></li>
-						<li><a href="/contact">Contact</a></li>
+						<li><a href="/contact">Contactez-nous</a></li>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>
@@ -120,7 +124,7 @@
 					<p class="pt-20 pb-20 text-white">
 						Projet d'Inventaire général du Patrimoine Architecural Afro - Brésilien au Bénin <br>( Villes bénéficiaires : Abomey-Calavi Athiémè Bohicon Cotonou Grand-Popo Ouidah Porto-Novo )
 					</p>
-					<a href="#" class="primary-btn text-uppercase">En savoir plus</a>
+					<a href="/about" class="primary-btn text-uppercase">En savoir plus</a>
 				</div>
 			</div>
 		</div>
