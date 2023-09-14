@@ -42,7 +42,7 @@ Route::post('/savePaper', [MainController::class,'savePaper']);
 Route::get('/getArrondissementAjax', [MainController::class,'getArrondissement']);
 Route::get('/getCommuneAjax', [MainController::class,'getCommune']);
 Route::get('/getDepartementAjax', [MainController::class,'getDepartement']);
-Route::get('/', [MainController::class,'login']);
+Route::get('/login', [MainController::class,'login']);
 Route::get('/forget', [MainController::class,'forget']);
 Route::get('/dashboard', [MainController::class,'dashboard']);
 Route::get('/addPaper', [MainController::class,'addPaper']);
