@@ -191,6 +191,9 @@
 						<li class="ml-2 text-montserrat">
 							Expert : Dr <span class="text-montserrat-x-bold">EDJEKPOTO Sylvestre</span>, Historien et Urbaniste du patrimoine culturel et du tourisme
 						</li>
+						<li class="ml-2 text-montserrat">
+							Réalisation : Cabinet <span class="text-montserrat-x-bold">Les Monts Des Oliviers</span>, Marius Marcel NOUGBODOHOUE (+229 97 23 91 31)
+						</li>
 					</ul>
 				</p>
 				<br>
