@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/front', [MainController::class,'front']);
+Route::get('/', [MainController::class,'front']);
 Route::get('/about', [MainController::class,'about']);
 Route::get('/contact', [MainController::class,'contact']);
 
@@ -32,6 +32,7 @@ Route::get('storage/{filename}', function ($filename)
     return $response;
 });
 
+Route::post('/loginAjax', [MainController::class,'loginAjax']);
 Route::post('/updatePaper', [MainController::class,'updatePaper']);
 Route::get('/editFiche/{fiche}', [MainController::class,'editFiche']);
 Route::get('/showFiche/{fiche}', [MainController::class,'showFiche']);

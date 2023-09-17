@@ -11,7 +11,7 @@
 
           </div>
           <div>
-            <h3 class="fw-semibold">Bonjour, <span class="text-dark">Johnathan</span>
+            <h3 class="fw-semibold">Bonjour, <span class="text-dark">{{session()->get('user')->prenoms}}</span>
             </h3>
             <span>Salutations, et bon travail - <span id="showCurrentDate"></span></span>
           </div>

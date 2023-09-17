@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -100,7 +102,7 @@ class MainController extends Controller
         LEFT JOIN coordonnees coor ON coor.Codelocal = loc.Codelocal
         ';
 
-        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';  
+        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN proprietepriv proppriv ON proppriv.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN bienimmeuble bienimm ON bienimm.Codequalif  = qual.Codequalif  ';
         $query .= ' LEFT JOIN bienmeuble bienmeu ON bienmeu.Codequalif  = qual.Codequalif  ';
@@ -190,7 +192,7 @@ class MainController extends Controller
                     LEFT JOIN coordonnees coor ON coor.Codelocal = loc.Codelocal
             ';
 
-        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';  
+        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN proprietepriv proppriv ON proppriv.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN bienimmeuble bienimm ON bienimm.Codequalif  = qual.Codequalif  ';
         $query .= ' LEFT JOIN bienmeuble bienmeu ON bienmeu.Codequalif  = qual.Codequalif  ';
@@ -204,27 +206,27 @@ class MainController extends Controller
 
 
         $result = \DB::select($query.' WHERE ident.Codeident = ?',[$fiche])[0];
-        
+
         $imagesEntier = \DB::select('SELECT * FROM identification ident INNER JOIN image ON image.Codeident = ident.Codeident
         INNER JOIN photoobjentier poe ON poe.Codeimage   = image.Codeimage  WHERE ident.Codeident = ?',[$fiche]);
-        
+
         $imagesDetails = \DB::select('SELECT * FROM identification ident INNER JOIN image ON image.Codeident = ident.Codeident
         INNER JOIN photodetails pd ON pd.Codeimage   = image.Codeimage  WHERE ident.Codeident = ?',[$fiche]);
-        
+
         $imagesAerIlot = \DB::select('SELECT * FROM identification ident INNER JOIN image ON image.Codeident = ident.Codeident
         INNER JOIN photoaerienne paer ON paer.Codeimage   = image.Codeimage
         INNER JOIN photoaerilot paeri ON paeri.Codephotoaeri   = paer.Codephotoaeri  WHERE ident.Codeident = ?',[$fiche]);
-        
+
         $imagesAerobj = \DB::select('SELECT * FROM identification ident INNER JOIN image ON image.Codeident = ident.Codeident
         INNER JOIN photoaerienne paer ON paer.Codeimage   = image.Codeimage
         INNER JOIN photoaerobj paero ON paero.Codephotoaeri   = paer.Codephotoaeri  WHERE ident.Codeident = ?',[$fiche]);
 
-        
+
         $departements = \DB::select('SELECT * FROM departement',[]);
         $communes = \DB::select('SELECT * FROM commune',[]);
         $arrondissements = \DB::select('SELECT * FROM arrondissement',[]);
 
-    
+
         return view('viewPaper',compact('result','departements','communes','arrondissements','imagesEntier','imagesDetails','imagesAerIlot','imagesAerobj'));
     }
 
@@ -378,7 +380,7 @@ class MainController extends Controller
             \DB::delete('DELETE FROM bienimmeuble WHERE Codequalif = ?',[$oldData->Codequalif]);
             \DB::delete('DELETE FROM bienmeuble WHERE Codequalif = ?',[$oldData->Codequalif]);
             \DB::delete('DELETE FROM bienimmateriel WHERE Codequalif = ?',[$oldData->Codequalif]);
-            
+
             switch (request('bientype')) {
                 case 'Bien immeuble':
                     do
@@ -886,11 +888,11 @@ class MainController extends Controller
             $inventaire = $code;
 
             //Identification
-            
+
             $data = \DB::select('SELECT * FROM compteurv ',[])[0];
             $actu = $data->Compteurcodeident;
             $code = 'FA'.sprintf("%06s", $actu+1);
-            
+
             \DB::insert('INSERT INTO identification (Codeident,Synthesehisto,Diagnosticarch,Nature,Denominationof,Denominationpop,Autredenomination,Codelocal,Codepropri,Codequalif,Codeconserv,Codeprotec,Codeinfoinvent)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',[$code,request('synthese'),request('diagnostic'),request('nature'),request('denominationOff'),request('denominationPop'),request('autresDenomination'),$localisation,$propriete,$qualification,$conservation,$protection,$inventaire]);
             $identification = $code;
@@ -1098,7 +1100,7 @@ class MainController extends Controller
         LEFT JOIN coordonnees coor ON coor.Codelocal = loc.Codelocal
         ';
 
-        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';  
+        $query .= ' LEFT JOIN proprietepub proppub ON proppub.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN proprietepriv proppriv ON proppriv.Codepropri = prop.Codepropri ';
         $query .= ' LEFT JOIN bienimmeuble bienimm ON bienimm.Codequalif  = qual.Codequalif  ';
         $query .= ' LEFT JOIN bienmeuble bienmeu ON bienmeu.Codequalif  = qual.Codequalif  ';
@@ -1215,6 +1217,28 @@ class MainController extends Controller
     function contact()
     {
         return view('front.contact');
+    }
+
+    function loginAjax()
+    {
+        $login = request('email');
+        $pwd = request('password');
+        $model = User::where('email', $login)->first();
+        if ($model != null) {
+            if (Hash::check($pwd, $model->password, []))
+            {
+                session()->put('user', $model);
+                session()->save();
+                echo 'true||Connexion reussie';
+                exit;
+            }else{
+                echo 'false||Mot de passe incorrect';
+                exit;
+            }
+        }else{
+            echo 'false||Cet utilisateur est inconnu';
+            exit;
+        }
     }
 
 }

@@ -30,7 +30,8 @@
               <div class="card mb-0">
                 <div class="card-body pt-5">
                   <a href="index.html" class="text-nowrap logo-img text-center d-block mb-4">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg" width="180" alt="">
+                    <span class="h4">Crystal Afro Brésilien</span>
+                    {{-- <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg" width="180" alt=""> --}}
                   </a>
                   <div class="mb-5 text-center">
                     <p class="mb-0 ">
@@ -43,7 +44,7 @@
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <a href="javascript:void(0)" class="btn btn-primary w-100 py-8 mb-3">Valider</a>
-                    <a href="/" class="btn btn-light-primary text-primary w-100 py-8">Retour à la connexion</a>
+                    <a href="/login" class="btn btn-light-primary text-primary w-100 py-8">Retour à la connexion</a>
                   </form>
                 </div>
               </div>
